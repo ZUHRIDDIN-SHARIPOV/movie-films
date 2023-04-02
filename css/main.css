@@ -1,0 +1,155 @@
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  margin: 0;
+  display: none;
+}
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  margin: 0;
+}
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  display: inline-block;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+.container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: inline-block;
+}
+.site-header {
+  background-color: #434344;
+  padding: 21px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.searchInput {
+  padding: 9px 15px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+.searchBtn {
+  margin-left: 15px;
+  padding: 9px 13px;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+}
+.movie__list {
+  margin-top: 105px;
+  margin-bottom: 70px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 30px;
+}
+.movie__item {
+  max-width: 400px;
+  border: 1px solid gray;
+  padding: 10px;
+}
+.movie__item-title {
+  font-weight: 500;
+  font-size: 21px;
+  padding-top: 5px;
+}
+.movie__item-date {
+  font-weight: 500;
+  font-size: 16px;
+  padding-top: 10px;
+}
+.movie__item-id {
+  font-weight: 500;
+  font-size: 16px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  color: red;
+}
+.loader {
+  width: 150px;
+  height: 150px;
+  margin-top: 170px;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite;
+}
+.loader::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 5px solid #434344;
+  animation: prixClipFix 2s linear infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
+}
+@media only screen and (max-width: 540px) {
+  .loader {
+    margin-top: 100px;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .site-header {
+    text-align: center;
+  }
+  .loader {
+    width: 100px;
+    height: 100px;
+  }
+}
