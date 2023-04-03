@@ -54,4 +54,5 @@ const searchBtn = document.querySelector(".searchBtn");
 searchBtn.addEventListener("click", (e) => {
   e.preventDefault();
   fetchData();
+  searchInput.value = "";
 });
