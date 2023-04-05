@@ -7,10 +7,10 @@ const loader_container = document.querySelector(".loader__container");
 const loader = document.createElement("div");
 loader_container.append(loader);
 loader.classList.add("loader");
-
+let currentPage = 1;
 async function fetchData() {
   if (!searchInput.value) {
-    url = `${baseUrl}discover/movie?api_key=${apiKey}`;
+    url = `${baseUrl}discover/movie?api_key=${apiKey}&page=${currentPage}`;
   } else {
     url = `${baseUrl}search/movie?api_key=${apiKey}&query=${searchInput.value}`;
   }
@@ -43,13 +43,28 @@ async function fetchData() {
       movieItemId.classList.add("movie__item-id");
       movieItemId.textContent = `id: ${movie.id}`;
     });
+    const paginationWrapper = document.querySelector(".pagination__wrapper");
+    paginationWrapper.innerHTML = "";
+    if (data.total_pages > 1) {
+      for (let i = 1; i <= 7; i++) {
+        const button = document.createElement("button");
+        button.textContent = i;
+        paginationWrapper.append(button);
+        button.classList.add("pagination__wrapper-btn");
+        if (currentPage === i) {
+          button.classList.add("active");
+        }
+        button.addEventListener("click", () => {
+          currentPage = i;
+          fetchData();
+        });
+      }
+    }
   } catch (error) {
     console.error(error.message);
   }
 }
-setTimeout(() => {
-  fetchData();
-}, 777);
+fetchData();
 const searchBtn = document.querySelector(".searchBtn");
 searchBtn.addEventListener("click", (e) => {
   e.preventDefault();
