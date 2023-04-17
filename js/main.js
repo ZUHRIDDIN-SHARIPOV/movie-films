@@ -72,7 +72,6 @@ async function fetchData() {
         });
       }
     }
-    console.log(data);
   } catch (error) {
     console.error(error.message);
   }
