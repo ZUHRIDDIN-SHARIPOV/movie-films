@@ -8,6 +8,7 @@ const loader = document.createElement("div");
 loader_container.append(loader);
 loader.classList.add("loader");
 let currentPage = 1;
+let maxPage = 7;
 async function fetchData() {
   if (!searchInput.value) {
     url = `${baseUrl}discover/movie?api_key=${apiKey}&page=${currentPage}`;
@@ -46,7 +47,7 @@ async function fetchData() {
     const paginationWrapper = document.querySelector(".pagination__wrapper");
     paginationWrapper.innerHTML = "";
     if (data.total_pages > 1) {
-      for (let i = 1; i <= 7; i++) {
+      for (let i = currentPage; i <= maxPage; i++) {
         const button = document.createElement("button");
         button.textContent = i;
         paginationWrapper.append(button);
@@ -54,12 +55,24 @@ async function fetchData() {
         if (currentPage === i) {
           button.classList.add("active");
         }
+        if (currentPage === i) {
+          button.addEventListener("click", () => {
+            maxPage--;
+          });
+        }
+        if (maxPage === i) {
+          button.addEventListener("click", () => {
+            maxPage += 3;
+          });
+        }
         button.addEventListener("click", () => {
           currentPage = i;
           fetchData();
+          maxPage++;
         });
       }
     }
+    console.log(data);
   } catch (error) {
     console.error(error.message);
   }
